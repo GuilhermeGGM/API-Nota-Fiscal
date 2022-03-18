@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+import métodos
 from pathlib import Path
 from typing import Optional
 from pydantic import BaseModel
@@ -65,8 +66,7 @@ def get_empresa(
     nome_empresa: str):
 
     search = list(filter(lambda x: x['nome_empresa'] == nome_empresa, empresa))
-    searchNF = list(filter(lambda x: x['nome_empresa'] == nome_empresa, nota_fiscal))
-
+    searchNF = métodos.cont_empresaNF(nota_fiscal, nome_empresa)
     if search == []:
         return {'Erro': 'O item não existe'}
 
