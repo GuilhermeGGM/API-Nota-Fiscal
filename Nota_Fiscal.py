@@ -75,3 +75,9 @@ def get_empresa(
 
     return {'Empresa': search,
             'Notas fiscais registradas': searchNF}
+
+@app.get('/get-empresas/nf')
+def get_empresas():
+    return {'Empresas cadastradas:': empresa,
+            'Notas fiscais Cadastradas': nota_fiscal}
+
