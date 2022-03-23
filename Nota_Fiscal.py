@@ -62,8 +62,7 @@ nota_fiscal = [
 app = FastAPI()
 
 @app.get('/get-empresa/{nome_empresa}')
-def get_empresa(
-    nome_empresa: str):
+def get_empresa(nome_empresa: str):
 
     search = list(filter(lambda x: x['nome_empresa'] == nome_empresa, empresa))
     searchNF = métodos.cont_empresaNF(nota_fiscal, nome_empresa)
@@ -76,8 +75,19 @@ def get_empresa(
     return {'Empresa': search,
             'Notas fiscais registradas': searchNF}
 
-@app.get('/get-empresas/nf')
+@app.get('/get-empresa/')
 def get_empresas():
     return {'Empresas cadastradas:': empresa,
             'Notas fiscais Cadastradas': nota_fiscal}
 
+@app.post('/post-empresa/')
+def post_empresa(empresa_id: int, nome_empresa, cnpj):
+    search = list(filter(lambda x: x['id'] == empresa_id, empresa))
+    if search != []:
+        return {'Erro': 'A empresa ja existe'}
+
+    emp = {}
+    emp['id'] = empresa_id
+    emp['nome_empresa'] = nome_empresa
+    emp['cnpj'] = cnpj
+    empresa.append(emp)
