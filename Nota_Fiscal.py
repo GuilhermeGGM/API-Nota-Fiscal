@@ -91,3 +91,30 @@ def post_empresa(empresa_id: int, nome_empresa, cnpj):
     emp['nome_empresa'] = nome_empresa
     emp['cnpj'] = cnpj
     empresa.append(emp)
+
+@app.post('/post-nota_fiscal/')
+def post_nota_fiscal(
+    id_produto :int, nome_empresa,
+    serie, numero, nome_produto,
+    peso, cubagem, data):
+
+    searchID = list(filter(lambda x: x['id'] == id_produto, nota_fiscal))
+    search_empresa = list(filter(lambda x: x['nome_empresa'] == nome_empresa, empresa))
+    print(search_empresa)
+
+    if searchID != []:
+        return {'Erro': 'Essa nota fiscal ja existe'}
+
+    if nome_empresa not in search_empresa == []:
+        return {'Erro': 'A empresa em que a nota fiscal está cadastrada não existe'}
+
+    nf = {}
+    nf['id'] = id_produto
+    nf['nome_empresa'] = nome_empresa
+    nf['série'] = serie
+    nf['número'] = numero
+    nf['nome'] = nome_produto
+    nf['peso'] = peso
+    nf['cubagem'] = cubagem
+    nf['data'] = data
+    nota_fiscal.append(nf)
