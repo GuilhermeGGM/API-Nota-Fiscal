@@ -61,6 +61,25 @@ nota_fiscal = [
 ]
 app = FastAPI()
 
+class item(BaseModel):
+    id: int
+    nome_empresa: str
+    serie: str
+    numero: str
+    nome: str
+    peso: str
+    cubagem: int
+    data: str
+class UpdateItem(BaseModel):
+    id: Optional[int] = None
+    nome_empresa: Optional[str] = None
+    serie: Optional[str] = None
+    numero: Optional[str] = None
+    nome: Optional[str] = None
+    peso: Optional[str] = None
+    cubagem: Optional[int] = None
+    data: Optional[str] = None
+
 @app.get('/get-empresa/{nome_empresa}')
 def get_empresa(nome_empresa: str):
 
@@ -80,7 +99,7 @@ def get_empresas():
     return {'Empresas cadastradas:': empresa,
             'Notas fiscais Cadastradas': nota_fiscal}
 
-@app.post('/post-empresa/')
+@app.post('/post-empresa/', status_code= 201)
 def post_empresa(empresa_id: int, nome_empresa, cnpj):
     search = list(filter(lambda x: x['id'] == empresa_id, empresa))
     if search != []:
@@ -92,7 +111,7 @@ def post_empresa(empresa_id: int, nome_empresa, cnpj):
     emp['cnpj'] = cnpj
     empresa.append(emp)
 
-@app.post('/post-nota_fiscal/')
+@app.post('/post-nota_fiscal/', status_code=201)
 def post_nota_fiscal(
     id_produto :int, nome_empresa,
     serie, numero, nome_produto,
@@ -118,3 +137,29 @@ def post_nota_fiscal(
     nf['cubagem'] = cubagem
     nf['data'] = data
     nota_fiscal.append(nf)
+
+@app.put('/update/{nota_fiscal_id}')
+def updateNF(item_id: int, item:UpdateItem):
+    search = list(filter(lambda x: x['id'] == item_id, nota_fiscal))
+
+    if search == []:
+        return {'Erro': 'O intem não existe ou ja foi deletado'}
+
+    if item.id is not None:
+        search[0]['id'] = item.id
+    if item.nome_empresa is not None:
+        search[0]['nome_empresa'] = item.nome_empresa
+    if item.serie is not None:
+        search[0]['serie'] = item.serie
+    if item.numero is not None:
+        search[0]['numero'] = item.numero
+    if item.nome is not None:
+        search[0]['nome'] = item.nome
+    if item.peso is not None:
+        search[0]['peso'] = item.peso
+    if item.cubagem is not None:
+        search[0]['cubagem'] = item.nome
+    if item.data is not None:
+        search[0]['data'] = item.nome
+
+    return search
