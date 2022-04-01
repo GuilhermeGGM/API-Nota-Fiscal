@@ -10,7 +10,6 @@ empresa = [
     'cnpj': 14803029000116
     }
 ]
-
 nota_fiscal = [
     {
     'id': 1,
