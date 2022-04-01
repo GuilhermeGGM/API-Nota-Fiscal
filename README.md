@@ -19,3 +19,16 @@ No terminal, ecreva o seguinte código para criar a Virtualenv:
 
 Instale as dependências:
 >pip install -r requirements.txt
+
+Para iniciar a aplicação:
+>uvicorn nota_Fiscal:app --reload
+
+>Cole o link que aparecer no terminal no seu 
+>navegador e em seguida adiocione um "/docs".
+
+>Você vai ser direcionado para esse endereço:
+
+# Próximos passos
+>Melhorar o PUT
+
+>Adicionar um validador de cnpj
