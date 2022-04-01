@@ -1,0 +1,5 @@
+from fastapi import FastAPI
+import métodos
+from utilis import empresa, nota_fiscal
+from typing import Optional
+from pydantic import BaseModel
