@@ -27,6 +27,7 @@ Para iniciar a aplicação:
 >navegador e em seguida adiocione um "/docs".
 
 >Você vai ser direcionado para esse endereço:
+>https://github.com/GuilhermeGGM/API-Nota-Fiscal/issues/2#issue-1189893562
 
 # Próximos passos
 >Melhorar o PUT
