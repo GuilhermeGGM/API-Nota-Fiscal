@@ -1,9 +1,9 @@
-#API de administração de nota fiscal
+# API de administração de nota fiscal
 Essa api foi construída para fins de aprendizado.
 
 Ela simula a comunicação com um banco de dados referente a administração de notas fiscais.
 
-#Como rodar a aplicação
+# Como rodar a aplicação
 Clone o projeto:
 >git@github.com:GuilhermeGGM/API-Nota-Fiscal.git
 
