@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-import métodos
+import metodos
 from typing import Optional
 from pydantic import BaseModel
 from utilis import nota_fiscal, empresa
@@ -29,7 +29,7 @@ class UpdateItem(BaseModel):
 def get_empresa(nome_empresa: str):
 
     search = list(filter(lambda x: x['nome_empresa'] == nome_empresa, empresa))
-    searchNF = métodos.cont_empresaNF(nota_fiscal, nome_empresa)
+    searchNF = metodos.cont_empresaNF(nota_fiscal, nome_empresa)
     if search == []:
         return {'Erro': 'O item não existe'}
 
